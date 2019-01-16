@@ -1,0 +1,3 @@
+JMH S 28 com.alibaba.benchmark.Client S 60 com.alibaba.benchmark.generated.Client_echoComplexDO_jmhTest S 13 echoComplexDO S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 
+JMH S 28 com.alibaba.benchmark.Client S 60 com.alibaba.benchmark.generated.Client_echoComplexDO_jmhTest S 13 echoComplexDO S 10 SampleTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 
+JMH S 28 com.alibaba.benchmark.Client S 60 com.alibaba.benchmark.generated.Client_echoComplexDO_jmhTest S 13 echoComplexDO S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 

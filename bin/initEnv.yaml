@@ -1,0 +1,40 @@
+---
+- name: set utf-8
+  hosts: all
+  connection: ssh
+  become: yes
+  tasks:
+   - name: Change locale to en_US.utf-8
+     shell:
+       echo 'LANG=en_US.utf-8
+             LC_ALL=en_US.utf-8' > /etc/environment
+
+- name: Install java&java
+  hosts: all
+  connection: ssh
+  tasks:
+  - name: Install RPM packages
+    yum: pkg={{ item }} state=latest
+    with_items:
+      - java-1.8.0-openjdk
+      - maven
+
+- name: set java path
+  hosts: all
+  connection: ssh
+  become: true
+  tasks:
+   - shell: export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64
+   - shell: export PATH=$PATH:$JAVA_HOME/bin
+
+
+
+- name: copy rpc-benchmark code
+  hosts: all
+  connection: ssh
+  become: true
+  tasks:
+   - shell: rm -rf /root/rpc-compare
+   - name: Copy benchmark code
+     copy: src=../../rpc-compare dest=/root/
+           owner=root group=root mode=0644

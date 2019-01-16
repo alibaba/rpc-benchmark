@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>rpc-benchmark</artifactId>
+        <groupId>com.alibaba.benchmark</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dubbo-benchmark</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>dubbo-kryo-client</module>
+        <module>dubbo-kryo-server</module>
+        <module>dubbo-hessianlite-client</module>
+        <module>dubbo-hessianlite-server</module>
+        <module>dubbo-fst-client</module>
+        <module>dubbo-fst-server</module>
+        <module>dubbo-native-hessian-server</module>
+        <module>dubbo-native-hessian-client</module>
+        <module>dubbo-common</module>
+        <module>dubbo-server-base</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.benchmark</groupId>
+            <artifactId>benchmark-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.benchmark</groupId>
+                <artifactId>dubbo-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.benchmark</groupId>
+                <artifactId>dubbo-server-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+</project>
