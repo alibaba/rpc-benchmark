@@ -1,0 +1,21 @@
+.classpath
+.project
+.settings
+.pydevproject
+target
+/.metadata/
+*.pyc
+*.svg
+core/*.json
+*.json
+*.retry
+*.pem
+**/.terraform
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/*.lock.info
+.DS_Store
+
+# IntelliJ artifacts
+.idea/
+*.iml
