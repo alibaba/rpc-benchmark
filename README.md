@@ -28,6 +28,6 @@
 
  ## 执行测试
  
-   ansible-playbook initEnv.yaml --inventory=`which terraform-inventory`  -u root
+   ansible-playbook initEnv.yaml --inventory=\`which terraform-inventory\`  -u root
  
   

@@ -34,7 +34,7 @@
   connection: ssh
   become: true
   tasks:
-   - shell: rm -rf /root/rpc-compare
+   - shell: rm -rf /root/rpc-benchmark
    - name: Copy benchmark code
-     copy: src=../../rpc-compare dest=/root/
+     copy: src=../../rpc-benchmark dest=/root/
            owner=root group=root mode=0644
