@@ -23,7 +23,7 @@
  - 安装JDK,MVN,代码部署
   
    
-   ansible-playbook initEnv.yaml --inventory=`which terraform-inventory`  -u root
+   ansible-playbook initEnv.yaml --inventory=\`which terraform-inventory\`  -u root
    
 
  ## 执行测试
