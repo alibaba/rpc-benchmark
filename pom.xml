@@ -29,6 +29,7 @@
         <module>benchmark-common</module>
         <module>dubbo-benchmark</module>
         <module>grpc-benchmark</module>
+        <module>Thrift-benchmark</module>
     </modules>
 
     <dependencyManagement>
