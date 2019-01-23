@@ -46,6 +46,7 @@ public class Client extends AbstractClient {
 
     @TearDown
     public void close() throws IOException {
+        System.out.println("tear down");
         resourceService.destroy();
         context.close();
         resourceServiceContext.close();
