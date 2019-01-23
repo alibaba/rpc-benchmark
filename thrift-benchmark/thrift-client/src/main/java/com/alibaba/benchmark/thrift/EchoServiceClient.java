@@ -22,6 +22,7 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
     private final TTransport transport;
     private final ComplexDoService.Client client ;
     private final TProtocol protocol;
+    private final
     public static ComPlexDO comPlexDO = null;
 
     public EchoServiceClient() {
