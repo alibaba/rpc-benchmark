@@ -23,13 +23,8 @@ public class Server {
             InetSocketAddress serverAddress = new InetSocketAddress("localhost", port);
             TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(serverAddress);
             TThreadedSelectorServer.Args params = new TThreadedSelectorServer.Args(serverSocket);
-            params.maxReadBufferBytes=1024*1024*100;
-//            params.protocolFactory(new TBinaryProtocol.Factory());
             params.processor(new ComplexDoService.Processor<ComplexDoService.Iface>(new ComplexDoServiceImpl()));
             params.protocolFactory(new TCompactProtocol.Factory());
-            params.selectorThreads=5;
-            ExecutorService pool = Executors.newFixedThreadPool(5);
-            params.executorService(pool);
             TThreadedSelectorServer server = new TThreadedSelectorServer(params);
             server.serve();
         }catch (TTransportException e) {

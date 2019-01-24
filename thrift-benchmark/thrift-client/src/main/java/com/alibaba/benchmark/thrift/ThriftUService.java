@@ -1,6 +1,7 @@
 package com.alibaba.benchmark.thrift;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
@@ -10,15 +11,15 @@ import org.apache.thrift.transport.TTransportException;
 import java.io.Closeable;
 import java.io.IOException;
 
-public class ThriftUserServiceClient implements Closeable {
+public class ThriftUService implements Closeable {
 
 	public final TTransport transport;
 	public final TProtocol protocol;
 	public final ComplexDoService.Client client;
 
-	public ThriftUserServiceClient(String host, int port) {
+	public ThriftUService(String host, int port) {
 		transport = new TFramedTransport(new TSocket(host, port));
-		protocol = new TBinaryProtocol(transport);
+		protocol = new TCompactProtocol(transport);
 		client = new ComplexDoService.Client(protocol);
 
 		try {
