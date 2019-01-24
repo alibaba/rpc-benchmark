@@ -12,19 +12,21 @@ import org.apache.thrift.transport.TTransportException;
 import com.alibaba.benchmark.service.ResourceService;
 import com.alibaba.benchmark.thrift.ComPlexDO;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static javafx.scene.input.KeyCode.T;
-
-public class EchoServiceClient implements com.alibaba.benchmark.service.EchoService, ResourceService {
+/**
+ * @author linqiuping
+ */
+public class EchoServiceClient implements com.alibaba.benchmark.service.EchoService, ResourceService,Closeable {
 
     int port = Integer.valueOf(System.getProperty("server.port", "8088"));
     String host = System.getProperty("server.host", "127.0.0.1");
     public static ComPlexDO comPlexDO = null;
 
-    private final LockObjectPool<ThriftUserServiceClient> clientPool =
-            new LockObjectPool<>(5, () -> new ThriftUserServiceClient(host, port));
+    private final LockObjectPool<ThriftUService> clientPool = //
+            new LockObjectPool<>(1, () -> new ThriftUService(host, port));
 
     public EchoServiceClient() {
         comPlexDO = new ComPlexDO();
@@ -43,19 +45,16 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
 
     }
 
-
     @Override
     public Object echoComplexDO(Object Object) {
-        ThriftUserServiceClient thriftUserServiceClient = clientPool.borrow();
+        ThriftUService thriftServiceClient = clientPool.borrow();
         try {
-            return thriftUserServiceClient.client.echoComplexDO((com.alibaba.benchmark.thrift.ComPlexDO) Object);
-        } catch (TException e) {
-            e.printStackTrace();
+            return thriftServiceClient.client.echoComplexDO((com.alibaba.benchmark.thrift.ComPlexDO) Object);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
         } finally {
-            clientPool.release(thriftUserServiceClient);
+            clientPool.release(thriftServiceClient);
         }
-        return null;
-
     }
 
     @Override
@@ -64,19 +63,12 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
     }
 
     @Override
-    public void destroy() {
-        try {
-            clientPool.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void destroy() throws IOException {
+     close();
     }
 
-    public static void main(String[] args) {
-
-        EchoServiceClient echoServiceClient=new EchoServiceClient();
-        echoServiceClient.echoComplexDO(echoServiceClient.getComplexDO());
-        echoServiceClient.destroy();
+    public void close() throws IOException {
+        clientPool.close();
     }
 }
 
