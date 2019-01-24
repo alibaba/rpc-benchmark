@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class ThriftUserServiceClient implements Closeable {
 
-	// not thread safe
 	public final TTransport transport;
 	public final TProtocol protocol;
 	public final ComplexDoService.Client client;

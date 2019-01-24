@@ -1,0 +1,90 @@
+11:19:31.748 [pool-1-thread-1] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:19:31.748 [pool-1-thread-3] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:19:31.748 [pool-1-thread-2] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:19:31.772 [pool-1-thread-4] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:19:31.820 [pool-1-thread-5] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:20:51.502 [pool-1-thread-2] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:20:51.502 [pool-1-thread-4] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:20:51.502 [pool-1-thread-1] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:20:51.502 [pool-1-thread-3] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+11:20:51.519 [pool-1-thread-5] WARN  o.a.t.s.AbstractNonblockingServer$FrameBuffer - Exception while invoking!
+org.apache.thrift.protocol.TProtocolException: Expected protocol id ffffff82 but got ffffff80
+	at org.apache.thrift.protocol.TCompactProtocol.readMessageBegin(TCompactProtocol.java:507)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:27)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)

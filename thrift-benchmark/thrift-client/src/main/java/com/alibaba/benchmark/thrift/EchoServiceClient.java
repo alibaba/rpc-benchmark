@@ -1,5 +1,6 @@
 package com.alibaba.benchmark.thrift;
 
+import com.alibaba.benchmark.pool.LockObjectPool;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TCompactProtocol;
@@ -11,6 +12,7 @@ import org.apache.thrift.transport.TTransportException;
 import com.alibaba.benchmark.service.ResourceService;
 import com.alibaba.benchmark.thrift.ComPlexDO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.input.KeyCode.T;
@@ -19,23 +21,12 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
 
     int port = Integer.valueOf(System.getProperty("server.port", "8088"));
     String host = System.getProperty("server.host", "127.0.0.1");
-    private final TTransport transport;
-    private final ComplexDoService.Client client ;
-    private final TProtocol protocol;
-    private final
     public static ComPlexDO comPlexDO = null;
 
+    private final LockObjectPool<ThriftUserServiceClient> clientPool =
+            new LockObjectPool<>(5, () -> new ThriftUserServiceClient(host, port));
+
     public EchoServiceClient() {
-        transport = new TFramedTransport(new TSocket(host, port));
-        protocol = new TCompactProtocol(transport);
-        client= new ComplexDoService.Client(protocol);
-
-        try {
-            transport.open();
-        } catch (TTransportException e) {
-            throw new Error(e);
-        }
-
         comPlexDO = new ComPlexDO();
         String string1 = "A man was going to the house of some rich person. As he went along the road, he saw a box of good apples at the side of the road. He said, I do not want to eat those apples; for the rich man will give me much food; he will give me very nice food to eat. Then he took the apples and threw them away into the dust.";
         String string2 = "An old woman had a cat. The cat was very old; she could not run quickly, and she could not bite, because she was so old. One day the old cat saw a mouse; she jumped and caught the mouse. But she could not bite it; so the mouse got out of her mouth and ran away, because the cat could not bite it";
@@ -55,10 +46,13 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
 
     @Override
     public Object echoComplexDO(Object Object) {
+        ThriftUserServiceClient thriftUserServiceClient = clientPool.borrow();
         try {
-            return client.echoComplexDO((com.alibaba.benchmark.thrift.ComPlexDO) Object);
+            return thriftUserServiceClient.client.echoComplexDO((com.alibaba.benchmark.thrift.ComPlexDO) Object);
         } catch (TException e) {
             e.printStackTrace();
+        } finally {
+            clientPool.release(thriftUserServiceClient);
         }
         return null;
 
@@ -71,7 +65,11 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
 
     @Override
     public void destroy() {
-        transport.close();
+        try {
+            clientPool.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
