@@ -1,17 +1,7 @@
 package com.alibaba.benchmark.thrift;
 
 import com.alibaba.benchmark.pool.LockObjectPool;
-import org.apache.thrift.TException;
-import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TCompactProtocol;
-import org.apache.thrift.protocol.TProtocol;
-import org.apache.thrift.transport.TFramedTransport;
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
-import org.apache.thrift.transport.TTransportException;
 import com.alibaba.benchmark.service.ResourceService;
-import com.alibaba.benchmark.thrift.ComPlexDO;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +16,7 @@ public class EchoServiceClient implements com.alibaba.benchmark.service.EchoServ
     public static ComPlexDO comPlexDO = null;
 
     private final LockObjectPool<ThriftUService> clientPool = //
-            new LockObjectPool<>(1, () -> new ThriftUService(host, port));
+            new LockObjectPool<>(32, () -> new ThriftUService(host, port));
 
     public EchoServiceClient() {
         comPlexDO = new ComPlexDO();

@@ -20,7 +20,8 @@ public class Server {
     public static void main(String[] args) {
         try {
             int port = Integer.valueOf(System.getProperty("server.port", "8088"));
-            InetSocketAddress serverAddress = new InetSocketAddress("localhost", port);
+            String host = System.getProperty("server.host", "127.0.0.1");
+            InetSocketAddress serverAddress = new InetSocketAddress(host, port);
             TNonblockingServerTransport serverSocket = new TNonblockingServerSocket(serverAddress);
             TThreadedSelectorServer.Args params = new TThreadedSelectorServer.Args(serverSocket);
             params.processor(new ComplexDoService.Processor<ComplexDoService.Iface>(new ComplexDoServiceImpl()));

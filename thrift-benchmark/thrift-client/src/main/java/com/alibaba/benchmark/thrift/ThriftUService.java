@@ -1,16 +1,16 @@
 package com.alibaba.benchmark.thrift;
-
-import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
-
 import java.io.Closeable;
 import java.io.IOException;
 
+/**
+ * @author linqiuping
+ */
 public class ThriftUService implements Closeable {
 
 	public final TTransport transport;
