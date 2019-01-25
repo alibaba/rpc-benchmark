@@ -28,13 +28,20 @@
    - shell: export PATH=$PATH:$JAVA_HOME/bin
 
 
+- name: package rpc-benchmark code
+  hosts: localhost
+  tasks:
+   - shell: tar cvf ../../rpc-benchmark.tar ../../rpc-benchmark
+     sudo: no
+
 
 - name: copy rpc-benchmark code
   hosts: all
   connection: ssh
   become: true
   tasks:
-   - shell: rm -rf /root/rpc-benchmark
+   - shell: rm -rf /root/rpc-benchmark*
    - name: Copy benchmark code
-     copy: src=../../rpc-benchmark dest=/root/
+     copy: src=../../rpc-benchmark.tar dest=/root/
            owner=root group=root mode=0644
+   - shell: tar xvf /root/rpc-benchmark.tar

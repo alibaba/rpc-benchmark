@@ -53,8 +53,8 @@ public class Client extends AbstractClient {
 
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput, Mode.AverageTime})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public Object echoComplexDO() throws Exception {
         return super.echoComplexDO();
     }
@@ -64,9 +64,7 @@ public class Client extends AbstractClient {
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .include(Client.class.getSimpleName());
-
         opt = doOptions(optBuilder).build();
-
         new Runner(opt).run();
     }
 

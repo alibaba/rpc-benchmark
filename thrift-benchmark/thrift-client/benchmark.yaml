@@ -4,27 +4,29 @@
   connection: ssh
   become: true
   tasks:
-    - shell: "sudo kill -9 $(ps -ef|grep java|awk '$0 !~/grep/ {print $2}' |tr -s '\n' ' ')"
+    - shell: "kill -9 $(ps -ef|grep java|awk '$0 !~/grep/ {print $2}' |tr -s '\n' ' ')"
       ignore_errors: yes
 
-- name: setup grpc producer
+- name: setup thrift server
   hosts: rpc-server
   connection: ssh
   become: true
   tasks:
-    - shell: "sh /root/rpc-compare/benchmark -c 32 -i 3 -t 10 -I 3 -T 10 -F 2 -p 8088 -f jmh.json /root/rpc-compare/thrift-benchmark/thrift-server > thriftserver.log 2>&1 & "
+    - name : setup thrift client
+      set_fact: server="{{ groups['rpc-server']|map('extract', hostvars, ['ansible_default_ipv4', 'address'])|list }}"
+    - shell: "sh /root/rpc-benchmark/benchmark  -p 8088 -s  {{ server[0]  }} /root/rpc-benchmark/thrift-benchmark/thrift-server > thriftserver.log 2>&1 & "
       async: 10
       poll: 10
 
 
-- name: setup grpc consumer
+- name: setup thrift client
   hosts: rpc-client
   connection: ssh
   become: true
   tasks:
-   - name : setup grpc consumer
+   - name : setup thrift client
      set_fact: server="{{ groups['rpc-server']|map('extract', hostvars, ['ansible_default_ipv4', 'address'])|list }}"
-   - shell: 'sh /root/rpc-compare/benchmark -c 60 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server[0]  }}   -p 8088 -f jmh.json /root/rpc-compare/thrift-benchmark/thrift-client > thriftclient.log '
+   - shell: 'sh /root/rpc-benchmark/benchmark -c 32 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server[0]  }}   -p 8088 -f jmh.json /root/rpc-benchmark/thrift-benchmark/thrift-client > thriftclient.log '
 
 - name: get result
   hosts: rpc-client
@@ -34,5 +36,5 @@
     - name : fetched result from client
       fetch:
         src: /root/jmh.json
-        dest: ../../result/grpc/grpc_benchmark.json
+        dest: ../../result/thrift/thrift_benchmark.json
         flat: yes
