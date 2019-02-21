@@ -8,5 +8,5 @@
     <dubbo:reference id="echoService" check="false"
                      interface="com.alibaba.benchmark.service.EchoService"
                      url="dubbo://${server.host}:${server.port}?optimizer=com.alibaba.benchmark.dubbo.serialize.SerializationOptimizerImpl&amp;serialization=kryo"/>
-    <dubbo:consumer client="netty4" filter="-default"/>
+    <dubbo:consumer client="netty4" filter="-default" timeout="20000"/>
 </beans>

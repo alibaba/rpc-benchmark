@@ -20,3 +20,4 @@ core/*.json
 # IntelliJ artifacts
 .idea/
 *.iml
+logs/

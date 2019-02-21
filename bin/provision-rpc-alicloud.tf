@@ -33,7 +33,7 @@ resource "alicloud_instance" "rpc-server" {
   system_disk_size = "64"
   count = "${var.num_instances["server"]}"
   key_name = "${alicloud_key_pair.key_pair.id}"
-
+  description  = "developer_native_compare=rpc"
 }
 
 #create rpc-client
@@ -50,13 +50,14 @@ resource "alicloud_instance" "rpc-client" {
   system_disk_size = "64"
   count = "${var.num_instances["client"]}"
   key_name = "${alicloud_key_pair.key_pair.id}"
+  description  = "developer_native_compare=rpc"
 }
 
 # Create security group
 resource "alicloud_security_group" "default" {
   name        = "default"
   provider    = "alicloud"
-  description = "default"
+ description  = "developer_native_compare=rpc"
 }
 
 resource "alicloud_security_group_rule" "allow_all_tcp" {
@@ -76,9 +77,9 @@ resource "alicloud_key_pair" "key_pair" {
 }
 
 output "rpc-server" {
-  value = "${alicloud_instance.rpc-server.*.public_ip}"
+  value = "${alicloud_instance.rpc-server.*.private_ip}"
 }
 
 output "rpc-client" {
-  value = "${alicloud_instance.rpc-client.*.public_ip}"
+  value = "${alicloud_instance.rpc-client.*.private_ip}"
 }
