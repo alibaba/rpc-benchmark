@@ -6,11 +6,8 @@
     <context:property-placeholder location="classpath:benchmark.properties" system-properties-mode="OVERRIDE"/>
     <dubbo:application name="dubbo-fst-client"/>
     <!-- FIXME: need to investigate why serialization optimizer doesn't work -->
-    <!--<dubbo:reference id="echoService" check="false"-->
-                     <!--interface="echoService"-->
-                     <!--url="dubbo://${server.host}:${server.port}?optimizer=SerializationOptimizerImpl&amp;serialization=fst"/>-->
     <dubbo:reference id="echoService" check="false"
                      interface="com.alibaba.benchmark.service.EchoService"
                      url="dubbo://${server.host}:${server.port}?serialization=fst"/>
-    <dubbo:consumer client="netty4" filter="-default"/>
+    <dubbo:consumer client="netty4" filter="-default" timeout="20000"/>
 </beans>

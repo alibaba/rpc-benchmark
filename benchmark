@@ -16,6 +16,13 @@ usage() {
     echo "dirname: test module name"
 }
 
+
+config(){
+echo "">./benchmark-common/src/main/resources/benchmark.properties
+echo 'server.host='${SERVER}>>./benchmark-common/src/main/resources/benchmark.properties
+echo 'server.port='${PORT}>>./benchmark-common/src/main/resources/benchmark.properties
+}
+
 build() {
     if [[ ! -d dubbo-benchmark/dubbo-serialization-native-hessian ]] && [[ ${PROJECT_DIR} = *native-hessian* ]]; then
         git clone https://github.com/dubbo/dubbo-serialization-native-hessian.git
@@ -120,6 +127,7 @@ if [[ ! -d "${PROJECT_DIR}" ]]; then
     exit 0
 fi
 
+config
 build
 java_options
 run
