@@ -7,26 +7,26 @@
     - shell: "sudo kill -9 $(ps -ef|grep java|awk '$0 !~/grep/ {print $2}' |tr -s '\n' ' ')"
       ignore_errors: yes
 
-- name: setup dubbo-kryo-server producer
+- name: setup dubbo-fst-server producer
   hosts: rpc-server
   connection: ssh
   become: true
   tasks:
-   - name : setup dubbo-kryo-server consumer
+   - name : setup dubbo-fst-server consumer
      set_fact: server="{{ hostvars[groups['rpc-server'][0]].private_ip }}"
-   - shell: "sh /root/rpc-benchmark/benchmark -c 32 -i 3 -t 10 -I 3 -T 10 -F 2 -p 8088 -s  {{ server  }} -f jmh.json /root/rpc-benchmark/dubbo-benchmark/dubbo-kryo-server > dubbo_kryo_server.log 2>&1 & "
+   - shell: "sh /root/rpc-benchmark/benchmark -c 32 -i 3 -t 10 -I 3 -T 10 -F 2 -p 8088 -s  {{ server  }} -f jmh.json /root/rpc-benchmark/dubbo-benchmark/dubbo-fst-server > dubbo_fst_server.log 2>&1 & "
      async: 10
      poll: 10
 
 
-- name: setup dubbo-kryo-server consumer
+- name: setup dubbo-fst-server consumer
   hosts: rpc-client
   connection: ssh
   become: true
   tasks:
-   - name : setup dubbo-kryo-server consumer
+   - name : setup dubbo-fst-server consumer
      set_fact:  server="{{ hostvars[groups['rpc-server'][0]].private_ip }}"
-   - shell: 'sh /root/rpc-benchmark/benchmark -c 60 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server  }}   -p 8088 -f jmh.json /root/rpc-benchmark/dubbo-benchmark/dubbo-kryo-client > dubbo_kryo_client.log '
+   - shell: 'sh /root/rpc-benchmark/benchmark -c 32 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server  }}   -p 8088 -f jmh.json /root/rpc-benchmark/dubbo-benchmark/dubbo-fst-client > dubbo_fst_client.log '
 
 - name: get result
   hosts: rpc-client
@@ -36,5 +36,5 @@
     - name : fetched result from client
       fetch:
         src: /root/jmh.json
-        dest: ../../result/dubbo/dubbo_kryo.json
+        dest: ../../result/dubbo/dubbo_fst.json
         flat: yes

@@ -77,9 +77,9 @@ resource "alicloud_key_pair" "key_pair" {
 }
 
 output "rpc-server" {
-  value = "${alicloud_instance.rpc-server.*.private_ip}"
+  value = "${alicloud_instance.rpc-server.*.public_ip}"
 }
 
 output "rpc-client" {
-  value = "${alicloud_instance.rpc-client.*.private_ip}"
+  value = "${alicloud_instance.rpc-client.*.public_ip}"
 }

@@ -1,9 +1,11 @@
 package com.alibaba.benchmark.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComplexDO {
+
+public class ComplexDO implements Serializable {
 
     private int pint;
     private long plong;

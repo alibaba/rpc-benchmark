@@ -24,13 +24,11 @@ echo 'server.port='${PORT}>>./benchmark-common/src/main/resources/benchmark.prop
 }
 
 build() {
-    if [[ ! -d dubbo-benchmark/dubbo-serialization-native-hessian ]] && [[ ${PROJECT_DIR} = *native-hessian* ]]; then
         git clone https://github.com/dubbo/dubbo-serialization-native-hessian.git
         pushd dubbo-benchmark/dubbo-serialization-native-hessian
         mvn clean install
         popd
-    fi
-    mvn --projects benchmark-common,dubbo-benchmark/dubbo-server-base,${PROJECT_DIR} clean package
+        mvn clean install
 }
 
 java_options() {

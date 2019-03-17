@@ -23,8 +23,8 @@
   become: true
   tasks:
    - name : setup grpc consumer
-     set_fact: server="{{ groups['rpc-server']|map('extract', hostvars, ['ansible_default_ipv4', 'address'])|list }}"
-   - shell: 'sh /root/rpc-benchmark/benchmark -c 60 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server[0]  }}   -p 8088 -f jmh.json /root/rpc-benchmark/grpc-benchmark/grpc-client > grpcclient.log '
+     set_fact:  server="{{ hostvars[groups['rpc-server'][0]].private_ip }}"
+   - shell: 'sh /root/rpc-benchmark/benchmark -c 60 -i 3 -t 10 -I 3 -T 10 -F 2 -s  {{ server  }}   -p 8088 -f jmh.json /root/rpc-benchmark/grpc-benchmark/grpc-client > grpcclient.log '
 
 - name: get result
   hosts: rpc-client
