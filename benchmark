@@ -28,6 +28,10 @@ build() {
         pushd dubbo-benchmark/dubbo-serialization-native-hessian
         mvn clean install
         popd
+        pushd thrift-benchmark/
+        mvn compile
+        mvn clean install
+        popd
         mvn clean install
 }
 

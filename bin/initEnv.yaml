@@ -18,6 +18,7 @@
     with_items:
       - java-1.8.0-openjdk
       - maven
+      - git
 
 - name: set java path
   hosts: all
